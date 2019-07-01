@@ -14,27 +14,67 @@
 Write code that prints out all the numbers from 1 to 10 as a single string.
 (Hint: the `String()` function can convert an Int to a String)
 
+```
+var numStringOneToTen = ""
+for i in 1...10 {
+    numStringOneToTen += String(i) + " "
+}
+print(numStringOneToTen)
+```
 ***
 ## Question 2
 
 Write code that prints out all the even numbers from 5 to 51 as a single string.
+
+```
+var evenFiveToFiftyOne = ""
+for i in 5...51 {
+    if i % 2 == 0 {
+        evenFiveToFiftyOne += String(i) + " "
+    }
+}
+print(evenFiveToFiftyOne)
+```
 
 ***
 ## Question 3
 
 Write code that prints out every number ending in 4 between 1 and 60 as a single string.
 
+```
+var endsInFour = ""
+for i in 1...60 {
+    if i % 10 == 4 {
+        endsInFour += String(i) + " "
+    }
+}
+print(endsInFour)
+```
+
 ***
 ## Question 4
 
 Print each character in the string `"Hello world!"`
+
+```
+let helloWorld = "Hello world!"
+for char in helloWorld {
+    print(char)
+}
+```
 
 ***
 ## Question 5
 
 Print out the last character in the string below.  You cannot use the Character literal "!" (i.e you must access `myStringSeven`'s characters).
 
-`let myStringSeven = "Hello world!"`
+```
+let myStringSeven = "Hello world!"
+let endStringSeven = myStringSeven.endIndex
+let lastCharIndex = myStringSeven.index(before: endStringSeven)
+let lastChar = myStringSeven[lastCharIndex]
+print(lastChar)
+```
 
 ***
 ## Question 6
@@ -43,30 +83,75 @@ Write code that switches on a string, given the following conditions:
 - If the string's length is even, print out every character.
 - If the string's length is odd, print out every other character.
 
+```
+let someString = "Hello world!"
+var index = 0
+
+if someString.count % 2 == 0 {
+    for char in someString {
+        print(char)
+    }
+} else {
+    for char in someString {
+        if index % 2 == 0 {
+            print(char)
+        }
+        index += 1
+    }
+}
+```
+
 ***
 ## Question 7
 
 Initialize a String with a character. Show that it is a Character, and not another String, that you're using to initialize it.
+
+```
+var stringLetter: String = "c"
+var stringChar = Character(stringLetter)
+print(stringChar)
+```
 
 ***
 ## Question 8
 
 Build five pairs of **canonically equivalent** strings, the first of each being a pre-composed character and the second being one that uses combinable unicode scalars. Show that they are equivalent.
 
+```swift
+let aAcutePrecomposed = "\u{00E1}"
+print(aAcutePrecomposed)            //prints out accented "a" with overhead `
+
+let aAcuteDecomposed = "\u{0061}\u{0301}"
+print(aAcuteDecomposed)             //prints out accented "a" with overhead `
+
+print(aAcutePrecomposed == aAcuteDecomposed)
+// prints out true because they're canonically equivalent
+```
 ***
 ## Question 9
 
 **Using only Unicode**, print out `"HELLO WORLD!"`
+
+```
+print("\u{0048}\u{0045}\u{004C}\u{004C}\u{004F}\u{0020}\u{0057}\u{004F}\u{0052}\u{004C}\u{0044}\u{0021}\u{00A}")
+```
 
 ***
 ## Question 10
 
 **Using only Unicode**, print out your name.
 
+```
+print("\u{004A}\u{0041}\u{0053}\u{004F}\u{004E}\u{0020}\u{0052}\u{0055}\u{0041}\u{004E}")
+```
 ***
 ## Question 11
 
 **Using only Unicode**, print out `"HELLO WORLD!"` in another language.
+
+```
+print("\u{0048}\u{006F}\u{006C}\u{0061}\u{0020}\u{004D}\u{0075}\u{006E}\u{0064}\u{006F}")
+```
 
 ***
 ## Question 12
@@ -89,6 +174,17 @@ Flower Box:
 | ⚘ | ⚘ | ⚘ | ⚘ | ⚘ |
 | ⚘ | ⚘ | ⚘ | ⚘ | ⚘ |
 - - - - - - - - - - -
+
+let outerRow = String(repeating: "\u{002D} ", count: 11)
+let flowerRow = String(repeating: "\u{007C}\u{0020}\u{2698}\u{0020}", count: 5) + "\u{007C}"
+
+print(outerRow)
+
+for numRows in 1...7 {
+    print(flowerRow)
+}
+
+print(outerRow)
 ```
 
 ***
@@ -114,8 +210,18 @@ Chess Board:
 You are given a string stored in the variable `aString`. Create new string named `replacedString` that contains the characters of the original string with all the occurrences of the character `"e"` replaced by `"\*"`.
 
 ```swift
-var aString = "Replace the letter e with \*"
-// Your code here
+var aString = "Replace the letter e with *"
+var newString = ""
+
+for letter in aString {
+    if letter == "e" {
+        newString.append("*")
+    } else {
+        newString.append(letter)
+    }
+}
+
+print(newString)
  ```
 
 Example:
@@ -135,7 +241,10 @@ You are given a string stored in variable `aString`. Create a new string called 
 var aString = "this string has 29 characters"
 var reverse = ""
 
-// Your code here
+for letter in aString.reversed() {
+    reverse.append(letter)
+}
+print(reverse)
 ```
 
 Example:
@@ -152,8 +261,10 @@ You are given a string stored in variable `aString`. Print `true` if `aString` i
 
 ```swift
 let aString = "anutforajaroftuna"
+let reversedString = String(aString.reversed())
 
-// Your code here
+print(aString == reversedString)
+
 ```
 
 Example 1:
@@ -229,6 +340,27 @@ Given a string in English, create a tuple containing the number of vowels and co
 let vowels = "aeiou"
 let consonants = "bcdfghjklmnpqrstvwxyz"
 let input = "Count how many vowels I have!"
+
+var numVowels = 0
+var numConsonants = 0
+
+for inputLetters in input.lowercased() {
+    for compareWithVowels in vowels {
+        if inputLetters == compareWithVowels {
+            numVowels += 1
+        }
+    }
+    for compareWithConsonants in consonants {
+        if inputLetters == compareWithConsonants {
+            numConsonants += 1
+        }
+    }
+}
+
+var vowelsToConsonants = (numVowels, numConsonants)
+
+print(vowelsToConsonants)
+
 ```
 
 ***
@@ -244,3 +376,16 @@ Input: `"How are you doing this Monday?"`
 Output: `7`
 
 ***
+```swift
+var string = "How are you doing this Monday!"
+var backwardsString = String(string.reversed())
+var lastWord = ""
+
+for char in backwardString {
+    if char == " " {
+        break
+    }
+    lastWord.append(char)
+}
+print(lastWord.count)
+```

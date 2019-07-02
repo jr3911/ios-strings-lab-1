@@ -14,7 +14,7 @@
 Write code that prints out all the numbers from 1 to 10 as a single string.
 (Hint: the `String()` function can convert an Int to a String)
 
-```
+```swift
 var numStringOneToTen = ""
 for i in 1...10 {
     numStringOneToTen += String(i) + " "
@@ -26,7 +26,7 @@ print(numStringOneToTen)
 
 Write code that prints out all the even numbers from 5 to 51 as a single string.
 
-```
+```swift
 var evenFiveToFiftyOne = ""
 for i in 5...51 {
     if i % 2 == 0 {
@@ -41,7 +41,7 @@ print(evenFiveToFiftyOne)
 
 Write code that prints out every number ending in 4 between 1 and 60 as a single string.
 
-```
+```swift
 var endsInFour = ""
 for i in 1...60 {
     if i % 10 == 4 {
@@ -56,7 +56,7 @@ print(endsInFour)
 
 Print each character in the string `"Hello world!"`
 
-```
+```swift
 let helloWorld = "Hello world!"
 for char in helloWorld {
     print(char)
@@ -68,7 +68,7 @@ for char in helloWorld {
 
 Print out the last character in the string below.  You cannot use the Character literal "!" (i.e you must access `myStringSeven`'s characters).
 
-```
+```swift
 let myStringSeven = "Hello world!"
 let endStringSeven = myStringSeven.endIndex
 let lastCharIndex = myStringSeven.index(before: endStringSeven)
@@ -83,7 +83,7 @@ Write code that switches on a string, given the following conditions:
 - If the string's length is even, print out every character.
 - If the string's length is odd, print out every other character.
 
-```
+```swift
 let someString = "Hello world!"
 var index = 0
 
@@ -106,7 +106,7 @@ if someString.count % 2 == 0 {
 
 Initialize a String with a character. Show that it is a Character, and not another String, that you're using to initialize it.
 
-```
+```swift
 var stringLetter: String = "c"
 var stringChar = Character(stringLetter)
 print(stringChar)
@@ -132,7 +132,7 @@ print(aAcutePrecomposed == aAcuteDecomposed)
 
 **Using only Unicode**, print out `"HELLO WORLD!"`
 
-```
+```swift
 print("\u{0048}\u{0045}\u{004C}\u{004C}\u{004F}\u{0020}\u{0057}\u{004F}\u{0052}\u{004C}\u{0044}\u{0021}\u{00A}")
 ```
 
@@ -141,7 +141,7 @@ print("\u{0048}\u{0045}\u{004C}\u{004C}\u{004F}\u{0020}\u{0057}\u{004F}\u{0052}\
 
 **Using only Unicode**, print out your name.
 
-```
+```swift
 print("\u{004A}\u{0041}\u{0053}\u{004F}\u{004E}\u{0020}\u{0052}\u{0055}\u{0041}\u{004E}")
 ```
 ***
@@ -149,7 +149,7 @@ print("\u{004A}\u{0041}\u{0053}\u{004F}\u{004E}\u{0020}\u{0052}\u{0055}\u{0041}\
 
 **Using only Unicode**, print out `"HELLO WORLD!"` in another language.
 
-```
+```swift
 print("\u{0048}\u{006F}\u{006C}\u{0061}\u{0020}\u{004D}\u{0075}\u{006E}\u{0064}\u{006F}")
 ```
 
@@ -210,7 +210,7 @@ Chess Board:
 You are given a string stored in the variable `aString`. Create new string named `replacedString` that contains the characters of the original string with all the occurrences of the character `"e"` replaced by `"\*"`.
 
 ```swift
-var aString = "Replace the letter e with *"
+var aString = "Replace the letter e with *"   \\ can also use equivalent unicode
 var newString = ""
 
 for letter in aString {
@@ -288,8 +288,26 @@ You are given a string stored in variable `problem`. Write code so that you prin
 
 ```swift
 var problem = "split this string into words and print them on separate lines"
+var currentWord = ""
+var wordArray = [String] ()
 
-// Your code
+for char in problem {
+    if char == "\u{0020}" {
+        wordArray.append(currentWord)
+        currentWord = ""
+        continue
+    } else {
+        currentWord += String(char)
+    }
+}
+
+// Finishes array by appending the last value assigned to currentWord
+wordArray.append(currentWord)
+
+// Prints each element of the array onto separate lines
+for eachWord in wordArray {
+    print(eachWord)
+}
 ```
 
 Example:
@@ -318,8 +336,33 @@ You are given a string stored in variable `problem`. Write code that prints the 
 
 ```swift
 var problem = "find the longest word in the problem description"
+var currentWord = ""
+var longestWord = ""
+var wordArray = [String] ()
 
-// Your code here
+for char in problem {
+    if char == "\u{0020}" {
+        wordArray.append(currentWord)
+        currentWord = ""
+        continue
+    } else {
+        currentWord += String(char)
+    }
+}
+
+// Finishes array by appending the last value assigned to currentWord
+wordArray.append(currentWord)
+
+for eachWord in wordArray {
+    if eachWord.count > longestWord.count {
+        longestWord = eachWord
+    }
+}
+print(longestWord)
+
+
+
+
 ```
 
 Example:

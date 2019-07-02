@@ -202,6 +202,40 @@ Chess Board:
 
 ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟
 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜
+
+
+// White Chess Pieces with space after
+var whtRook = "\u{2656}\u{0020}"
+var whtKnight = "\u{2658}\u{0020}"
+var whtBishop = "\u{2657}\u{0020}"
+var whtQueen = "\u{2655}\u{0020}"
+var whtKing = "\u{2654}\u{0020}"
+var whtPawn = "\u{2659}\u{0020}"
+
+// Black Chess Pieces with space after
+var blkRook = "\u{265C}\u{0020}"
+var blkKnight = "\u{265E}\u{0020}"
+var blkBishop = "\u{265D}\u{0020}"
+var blkQueen = "\u{265B}\u{0020}"
+var blkKing = "\u{265A}\u{0020}"
+var blkPawn = "\u{265F}\u{0020}"
+
+var uniqueWhiteRow = whtRook + whtKnight + whtBishop + whtQueen + whtKing + whtBishop + whtKnight + whtRook
+
+var uniqueBlackRow = blkRook + blkKnight + blkBishop + blkQueen + blkKing + blkBishop + blkKnight + blkRook
+
+var rowWhitePawns = String(repeating: whtPawn, count: 8)
+
+var rowBlackPawns = String(repeating: blkPawn, count: 8)
+
+var emptyRow = String(repeating: "\u{0020}", count: 8)
+
+print(uniqueWhiteRow)
+print(rowWhitePawns)
+print(String(repeating: emptyRow + "\u{000A}", count: 3))
+print(rowBlackPawns)
+print(uniqueBlackRow)
+
 ```
 
 ***
